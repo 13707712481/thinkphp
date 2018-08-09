@@ -1,0 +1,51 @@
+{include file="public/header"}<link rel="stylesheet" href="__PUBLIC__css/confirm_order.css" /><!--<script type="text/javascript" src="__PUBLIC__js/confirm_order.js" ></script>-->
+			<article class="center">
+				<header class="content_top">
+					<h3>确定订单页</h3>
+				</header>
+				<div class="order_top">
+					<h4>填写并核对订单信息</h4>
+				</div>
+				<div class="order_info">
+					<h4>收货人信息</h4>
+					<span><a href="{:url('Member/address')}">新增收货地址</a></span>
+					<ul>
+					    <li>{$addlist.linkman}</li>
+					    <li>{$addlist['address']}</li>
+					    <li>{$addlist.phone}</li>
+					    <li><input type="checkbox" value="{$addlist.id}" class="ck" name="status" style="margin-top: -2px; margin-right: 5px;" />默认地址</li>
+					    <li>
+					    	<a href="#">编辑</a>
+					    	<a href="#">删除</a>
+					    </li>  
+					</ul>
+				<div class="order_style clear">
+					<h4>支付方式</h4>
+						<div style="margin-left: 20px;">															<input type="radio" name="red" value="1" class="state" checked="checked" />支付宝支付								<input type="radio" name="red" value="2" class="state" checked="checked" />余额													</div>	
+				</div>
+				<div class="order_menu clear">
+					<h4>送货清单</h4>								{volist name="list" id="cv"}					<ul style="position: relative; margin-left: 30px; margin-bottom: 100px;">						<li><input type="checkbox" name="id[]" class="ck" value="{$cv.id}" /></li>						<li><a href="{:url('Product/pro_details',['id='.$cv.id])}"><img class='pro_img' src="{$cv.thumb}"  style="width: 103px; height: 106px;" alt='' /></a></li>						<li><h4 class='proname'><a href="{:url('Product/pro_details',['id='.$cv.id])}"></a></h4><p>{$cv.name}</p></li>						<li>￥<span class='price'>{$cv.price}</span></li>						<li class='buy_num'><p>{$cv.num}</p></li>						<li>￥<span class='subtotal' val="{$cv.price}">{$cv.total}</span></li>					</ul>				{/volist}
+					
+					
+				</div>
+				<div class="order_bottom">
+					<p>{$num}件商品，总商品金额：<em>￥</em><span>{$total}</span></p>
+					<P>返还：<em>￥</em><span>0.00</span></P>
+					<p>运费：<em>￥</em><span>0.00</span></p>
+					<p>应付总金额：<em>￥</em><span>{$total}</span></p>
+					<input type="button" class="btn orders" value="提交订单" style="background-color: #AC2925; margin-left: 120px; color: #fff;" />
+				</div>
+			</div>
+		</article>
+{include file="public/footer"}<script type="text/javascript" src="__PUBLIC__js/jquery-1.11.0.js" ></script><script>
+	$(function(){
+		$('.orders').click(function(){
+			var addressid=$('.ck:checked').val()
+			var state=$('.state:checked').val()
+			$.post("{:url('orders')}",{addressid:addressid,state:state},function(data){//				alert(data)
+//				return false
+				if(data.info){					location='/pay/'+data.orderid				}else{					alert(data.info)				}
+			})			return false
+		})
+	})
+</script>

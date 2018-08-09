@@ -1,0 +1,76 @@
+{include file="public/header_reg"}
+	<article class="content center" >
+		<div class="register_top">
+			<h5>注册新用户</h5>
+			<font>我已经是宏恒用户，现在就<a href="login.html">登录</a></font>
+			</div>
+		<div class="register_middle clear">
+			<form class="reg_info" action="login.html" onsubmit="return false">
+				<p class="reg1">
+					<label class="user">用户名：
+						<input type="text" id="username" name="username" class="name" placeholder="你的账户或用户名">
+					</label>
+					<i></i>
+				</p>
+				<p class="reg2">
+					<label class="email">email：
+						<input type="email" id="email" name="email" class="email" placeholder="请输入有效邮箱地址"/>
+					</label>
+					<i></i>
+				</p>
+				<p  class="reg3">
+					<label class="password">密码：
+						<input type="password" id="password" name="password" class="pwd" placeholder="至少使用两种字符组合"/>
+					</label>
+					<i></i>
+				</p>
+				<p  class="reg4">
+					<label class="password">确认密码：
+						<input type="password" id="con_password" name="password_confirm" class="pwd_con" placeholder="请再次输入密码"/>
+					</label>
+					<i></i>
+				</p>
+				<p  class="reg5">
+					<label class="phone">手机号码：
+						<input type="phone" id="phone" name="phone" class="tel" placeholder="建议输入常用号码"/>
+					</label>
+					<i></i>
+				</p>
+				<!--<p  class="reg6">
+
+					<label class="check">验证码：
+
+						<input type="check" id="check" name="check" placeholder="请输入验证码"/><button>获取验证码</button>
+
+					</label>
+
+					<i></i>
+
+				</p>-->
+				<p class="clear reg7">
+					<label class="agure">
+						<input type="checkbox" id="checkbox"/><em>点击注册，表示你已同意宏恒商城《<a href="#">服务协议</a>》</em>
+					</label>
+					<i></i>
+					</p>
+				<p class="reg8">
+					<input type="submit" value="立即注册" id="submit">
+				</p>
+			</form>
+			<div class="register_right">
+				<div class="register_content">
+					<h5>手机短信快速注册</h5>
+					<span></span>
+					<p>大陆手机用户</p>
+					<p>编辑短信<em>AG</em>发送到</p>
+					<i>8888888888</i>
+				</div>
+			</div>
+		</div>
+
+	</article>
+			
+		</div>
+
+	</article>
+	{include file="public/footer"}	<script>	$(function(){		$('#submit').click(function(){			var username=$(".name").val()			var email=$(".email").val()			var password=$(".pwd").val()			var password_confirm=$(".pwd_con").val()			var phone=$(".tel").val()			$.post("{:url('register')}",{username:username,email:email,password:password,password_confirm:password_confirm,phone:phone,},function(data){				if(data.info){					alert(data.msg)					location="{:url('login')}"				}else{					alert(data.msg)				}			})		})	})</script>

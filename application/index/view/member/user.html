@@ -1,0 +1,157 @@
+<link rel="stylesheet" href="__PUBLIC__css/user.css" />
+{include file="public/header"}
+			<article class="center">
+				<header class="content_top">
+					<h3>个人信息首页</h3>
+				</header>
+				<div class="content clear">
+					<div class="content_left">
+						<dl>
+							<dt>订单中心</dt>
+							<dd>
+								<ul>
+									<li><a href="order.html">我的订单</a></li>
+									<li><a href="#">团购订单</a></li>
+									<li><a href="#">本地生活订单</a></li>
+									<li><a href="#">取消订单</a></li>
+								</ul>
+							</dd>
+						</dl>
+						<dl>
+							<dt>关注中心</dt>
+							<dd>
+								<ul>
+									<li><a href="#">关注的商品</a></li>
+									<li><a href="#">关注的店铺</a></li>
+									<li><a href="#">关注的品牌</a></li>
+									<li><a href="#">关注的活动</a></li>
+								</ul>
+							</dd>
+						</dl>
+						<dl>
+							<dt>客服服务</dt>
+							<dd>
+								<ul>
+									<li><a href="#">退换货服务</a></li>
+									<li><a href="#">价格保护</a></li>
+									<li><a href="evaluation_page.html">意见建议</a></li>
+									<li><a href="#">购买咨询</a></li>
+									<li><a href="#">售后服务</a></li>
+								</ul>
+							</dd>
+						</dl>
+						<dl>
+							<dt>个人设置</dt>
+							<dd>
+								<ul>
+									<li><a href="javascript:void(0)" class="on">个人资料</a></li>
+									<li><a href="{:url('address')}" >收货地址</a></li>
+									<li><a href="#">修改密码</a></li>
+								</ul>
+							</dd>
+						</dl>
+					</div>
+					<div class="content_right" >
+						<div class="user_top">
+							<div>
+								<img src="__PUBLIC__images/user-1.jpg"/>
+								 <a href="###"><span>编辑头像</span> </a>
+							</div>
+							<p class="sale">
+								<label>安全账号:</label>
+								<img src="__PUBLIC__images/user-2.png"/>
+								<span>提升</span>
+							</p>
+						</div>
+						<div class="user_middle clear">
+							<form action="###" method="post">
+								<p class="log1">
+									<label>昵称: 
+									<input type="text" id=""/></label>
+								</p>
+								<p class="log2">
+									<label>性别: 
+									<input type="radio" name="sex"/>男&nbsp;&nbsp;&nbsp; 
+									<input type="radio" name="sex" checked="checked"/>女
+									</label>
+								</p>
+								<p class="log3">
+									<label>
+									生日：
+									<select name="" id="">
+										<option value="">2000</option>
+										<option value="">2001</option>
+										<option value="">2002</option>
+										<option value="">2003</option>
+										<option value="">2004</option>
+										<option value="">2005</option>
+										<option value="">2006</option>
+										<option value="">2007</option>
+										<option value="">2008</option>
+										<option value="">2009</option>
+										<option value="">2010</option>
+										<option value="">2011</option>
+										<option value="">2012</option>
+									</select>
+									年
+									<select name="" id="">
+										<option value="">01</option>
+										<option value="">02</option>
+										<option value="">03</option>
+										<option value="">04</option>
+										<option value="">05</option>
+										<option value="">06</option>
+										<option value="">07</option>
+										<option value="">08</option>
+										<option value="">09</option>
+										<option value="">10</option>
+										<option value="">11</option>
+										<option value="">12</option>
+									</select>
+									月
+									<select name="" id="">
+										<option value="">01</option>
+										<option value="">02</option>
+										<option value="">03</option>
+										<option value="">04</option>
+										<option value="">05</option>
+										<option value="">06</option>
+										<option value="">07</option>
+										<option value="">08</option>
+										<option value="">09</option>
+										<option value="">10</option>
+										<option value="">11</option>
+										<option value="">12</option>
+									</select>
+									日
+									</label>
+								</p>
+								<p class="log4">
+									<label>邮箱:</label><span><a href="#">立即验证</a></span>
+								</p>
+								<p class="log5 clear"><label>
+									地址：
+									<select id="s_province" name="s_province"></select>
+									<span>省</span>
+									<select id="s_city" name="s_city" ></select>
+									<span>市</span>
+									<select id="s_county" name="s_county"></select>
+									<span>区</span>
+									<input type="text"/>
+									</label>
+								</p>
+								<p class="log6">
+									<input type="submit" value="提交"/>
+								</p>
+							</form>
+							<div class="tip">
+								<h6>安全小提示：</h6>
+								<p>1.如果您的账号登录密码忘记，可以直接通过安保保问题和答案，重新设置密码。</p>
+								<p>2.由于保安问题是您选定的3个问题和答案组成，为了防止遗忘，建议您一周验证一次。</p>
+								<p>3.安保问题答案不要设置太简单，容易被人猜到。</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</article>
+{include file="public/footer"}

@@ -1,0 +1,135 @@
+{include file="public/header"}<link rel="stylesheet" href="__PUBLIC__css/shop_list.css" />
+			<article class="center">
+				<div class="content_left">
+					<div class="shop_top">
+						<span><a href="{:url('Index/index')}">首页</a></span>
+						<em>></em>
+						<span>{$cone.name}</span>
+					</div>
+					<div class="shop_list clear">
+						<dl>
+							<dt>品牌<em>:</em></dt>
+							<dd>
+								<ul>																		{volist name="blist" id="bv"}
+									<li class="on"><a href="{:url('prolist',['id'=>$cone.id,'cid'=>$cid,'bid'=>$bv.id])}">{$bv.name}</a></li>
+									{/volist}
+								</ul>
+							</dd>
+						</dl>
+						<dl>
+							<dt class="clear">价格区域<em>:</em></dt>
+							<dd>
+								<ul>
+									<li class="on"><a href="#">0-500</a></li>
+									<li><a href="javascript:void(0);">500-1000</a></li>
+									<li><a href="javascript:void(0);">1000-1500</a></li>
+									<li><a href="javascript:void(0);">1500-2000</a></li>
+									<li><a href="javascript:void(0);">2000-2500</a></li>
+									<li><a href="javascript:void(0);">2500-3000</a></li>
+								</ul>
+							</dd>
+						</dl>
+						<dl>
+							<dt class="clear">{$cone.name}<em>:</em></dt>
+							<dd>
+								<ul>																		{volist name="childlist" id="chi"}
+									<li class="on"><a href="{:url('prolist',['id'=>$cone.id,'cid'=>$chi.id])}">{$chi.name}</a></li>
+									{/volist}
+								</ul>
+							</dd>
+						</dl>
+						<dl>
+							<dt class="clear">地图软件<em>:</em></dt>
+							<dd>
+								<ul>
+									<li class="on"><a href="#">凯立德</a></li>
+									<li><a href="javascript:void(0);">四维图新</a></li>
+									<li><a href="javascript:void(0);">道道通</a></li>
+									<li><a href="javascript:void(0);">旅行者</a></li>
+									<li><a href="javascript:void(0);">高德</a></li>
+									<li><a href="javascript:void(0);">城际</a></li>
+								</ul>
+							</dd>
+						</dl>
+					</div>
+					<div class="shop_menu clear">
+						<ul>
+							<li><a href="javascript:void(0);">综合排序</a></li>
+							<li><a href="{:url('prolist',['id'=>$cone.id,'order'=>'xiaoliang'])}">销量</a></li>
+							<li><a href="{:url('prolist',['id'=>$cone.id,'order'=>'price'])}">价格</a></li>
+							<li><a href="{:url('prolist',['id'=>$cone.id,'order'=>'msg'])}">评论数</a></li>
+							<li><a href="{:url('prolist',['id'=>$cone.id,'order'=>'id'])}">新品</a></li>
+							<li>共<em> 200 </em>件相关产品</li>
+							<li>1/16</li>
+							<li><button>&lt</button></li>
+							<li><button>&gt</button></li>
+						</ul>
+					</div>
+					<div class="shop_kid clear">
+						<ul>														{volist name="plist" id="pv"}
+							<li>
+								<a href="{:url('pro_details',['id'=>$pv.id])}"><img class="img_src" src="{$pv.thumb|substr=###,1}" style="width: 217px; height: 168px;"/>
+								</a>
+			   					<p class="pro_name"><a href="{:url('pro_details',['id'=>$pv.id])}">{$pv.name}</a></p>
+			   					<p><em>￥</em><b class="price">{$pv.price}</b></p>
+			   					<input type="submit" value="加入购物"/>  
+			   					<p><span>总销量：500</span><i>评价：100</i></p>
+							</li>
+							{/volist}
+						</ul>
+					</div>
+					<div class="page clear">
+						{$plist->render()}
+						<ol>
+							<li>共30页</li>
+							<li>到第<input type="text" value="1"/>页</li>
+							<li><button>确定</button></li>
+						</ol>
+					</div>
+				</div>
+				<div class="content_right">
+					<h4>产品推销</h4>
+					<div class="show_list">
+						<ul>
+							<li>
+								<a href="pro_details.html"><img src="__PUBLIC__images/car_1.jpg"/></a>
+			   					<a href="pro_details.html"><p>固定测速 流动测速超速行驶实时 </p></a>
+			   					<span><em>￥</em>1599</span> 
+			   					<p><span>总销量：500</span><i>评价：100</i></p>
+							</li>
+							<li>
+								<a href="pro_details.html"><img src="__PUBLIC__images/car_2.jpg"/></a>
+			   					<a href="pro_details.html"><p>固定测速 流动测速超速行驶实时 </p></a>
+			   					<span><em>￥</em>1599</span> 
+			   					<p><span>总销量：500</span><i>评价：100</i></p>
+							</li>
+							<li>
+								<a href="pro_details.html"><img src="__PUBLIC__images/car_3.jpg"/></a>
+			   					<a href="pro_details.html"><p>固定测速 流动测速超速行驶实时 </p></a>
+			   					<span><em>￥</em>1599</span> 
+			   					<p><span>总销量：500</span><i>评价：100</i></p>
+							</li>
+							<li>
+								<a href="pro_details.html"><img src="__PUBLIC__images/car_4.jpg"/></a>
+			   					<a href="pro_details.html"><p>固定测速 流动测速超速行驶实时 </p></a>
+			   					<span><em>￥</em>1599</span> 
+			   					<p><span>总销量：500</span><i>评价：100</i></p>
+							</li>
+							<li>
+								<a href="pro_details.html"><img src="__PUBLIC__images/car_5.jpg"/></a>
+			   					<a href="pro_details.html"><p>固定测速 流动测速超速行驶实时 </p></a>
+			   					<span><em>￥</em>1599</span> 
+			   					<p><span>总销量：500</span><i>评价：100</i></p>
+							</li>
+							<li>
+								<a href="pro_details.html"><img src="__PUBLIC__images/car_6.jpg"/>
+								</a>
+			   					<a href="pro_details.html"><p>固定测速 流动测速超速行驶实时 </p></a>
+			   					<span><em>￥</em>1599</span> 
+			   					<p><span>总销量：500</span><i>评价：100</i></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</article>
+{include file="public/footer"}

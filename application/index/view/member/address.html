@@ -1,0 +1,107 @@
+{include file="public/header"}<link rel="stylesheet" href="__PUBLIC__css/address.css" /><script type="text/javascript" src="__PUBLIC__js/jsAddress.js"></script>
+		<article class="center">
+			<header class="content_top">
+				<h3>用户中心</h3>
+			</header>
+			<div class="content clear">
+				<div class="content_left">
+						<dl>
+							<dt>订单中心</dt>
+							<dd>
+								<ul>
+									<li><a href="order.html">我的订单</a></li>
+									<li><a href="#">团购订单</a></li>
+									<li><a href="#">本地生活订单</a></li>
+									<li><a href="#">取消订单</a></li>
+								</ul>
+							</dd>
+						</dl>
+						<dl>
+							<dt>关注中心</dt>
+							<dd>
+								<ul>
+									<li><a href="#">关注的商品</a></li>
+									<li><a href="#">关注的店铺</a></li>
+									<li><a href="#">关注的品牌</a></li>
+									<li><a href="#">关注的活动</a></li>
+								</ul>
+							</dd>
+						</dl>
+						<dl>
+							<dt>客服服务</dt>
+							<dd>
+								<ul>
+									<li><a href="#">退换货服务</a></li>
+									<li><a href="#">价格保护</a></li>
+									<li><a href="evaluation_page.html">意见建议</a></li>
+									<li><a href="#">购买咨询</a></li>
+									<li><a href="#">售后服务</a></li>
+								</ul>
+							</dd>
+						</dl>
+						<dl>
+							<dt>个人设置</dt>
+							<dd>
+								<ul>
+									<li><a href="user.html">个人资料</a></li>
+									<li><a href="address.html" class="on">收货地址</a></li>
+									<li><a href="#">修改密码</a></li>
+								</ul>
+							</dd>
+						</dl>
+				</div>
+				<div class="content_right">
+					<div class="address">
+						<h4>收货地址</h4>
+					</div>
+					<ul>						{volist name="list" id="v"}
+						<li>
+							<div class="add_title">
+								<h5>收货地址</h5>								
+								<ul>
+									<li><input {if condition="$v.status==1"}checked="checked"{/if} type="checkbox" value="{$v.id}" class="ck" name="status" style="margin-top: -2px; margin-right: 5px;" />默认地址</li>
+									<li><a href="#">修改</a></li>
+									<li><a href="#">删除</a></li>
+								</ul>
+							</div>
+							<ul class="add_cont">
+								<li><p>&nbsp;&nbsp;&nbsp;收货人：<span>{$v.linkman}</span></p></li>
+								<li><p>联系电话：<span>{$v.phone}</span></p></li>
+								<li><p>收货地址：<span>{$v.address}</span></p></li>
+							</ul>
+						</li>						{/volist}
+						<li>
+							<div class="add_title">
+								<h5>增加收货地址</h5>
+							</div>
+							<div class="form">
+								<form class="clear" action="" method="post" >
+									<p class="p1">
+										<label>&nbsp;&nbsp;&nbsp;收货人：<input type="text" name="linkman"/></label>
+									</p>
+									<p class="p2">
+										<label>联系电话：<input type="text" name="phone"/></label>
+									</p>
+									<p class="p3">
+										<b>收货地址：											<select style="width: 100px;" id="cmbProvince" name="province"></select>  											<select style="width: 100px;" id="cmbCity" name="city"></select>  											<select style="width: 100px;" id="cmbArea" name="country"></select> 										</b>
+									</p>									<p class="p3">
+
+										<label>详细地址：<input type="text" name="address"/></label>
+
+									</p>
+									<p class="p4">
+										<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：<input type="text" name="fox"/></label>
+									</p>
+									<p class="p5">
+										<input type="submit" class="btn_address" value="保存">										<input type="submit" class="btn_confirm" value="下一步">
+									</p>
+								</form>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</article>
+{include file="public/footer"}<script type="text/javascript">  	addressInit('cmbProvince', 'cmbCity', 'cmbArea');  </script>  <script>	$(function(){		$('.btn_address').click(function(){			var province=$("select[name='province']").val()			var city=$("select[name='city']").val()			var country=$("select[name='country']").val()			var address=$("input[name='address']").val()			var fox=$("input[name='fox']").val()			var linkman=$("input[name='linkman']").val()			var phone=$("input[name='phone']").val()			var status=$("input[name='status']").is(":checked")			if(status){				status=1			}else{				status=0			}			$.post("{:url('address')}",{province:province,city:city,country:country,address:address,fox:fox,linkman:linkman,phone:phone,status:status},function(data){				if(data.info){					alert(data.msg)					location="{:url('address')}"				}else{					alert(data.msg)				}			})			return false		})		$('.btn_confirm').click(function(){			var addressid=null;			$(".ck").each(function(){				if($(this).is(":checked")){					addressid=$(this).val();//					alert(addressid)//					$('input.ck').prop('checked',false);//					$(this).prop('checked',true);				}else{					status=0									}							})						if(addressid==''){				alert('请选择一个地址')				return false			}					$.post("{:url('Cart/confirm')}",{addressid:addressid},function(){
+					location="{:url('Cart/confirm')}"				
+			})			return false		})			})</script>

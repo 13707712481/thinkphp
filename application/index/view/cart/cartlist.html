@@ -1,0 +1,47 @@
+{include file="public/header"}<link rel="stylesheet" href="__PUBLIC__css/shop_cart.css" /><script type="text/javascript" src="__PUBLIC__js/localStorge.js"></script>
+<!--<script type="text/javascript" src="__PUBLIC__js/shop_cart1.js"></script>-->
+			<article class="center">
+			    <div class="car_top">
+			    	<h3>我的购物车</h3>
+			    </div>
+			    <div class="all_shop">
+			    	<span>全部商品(10)</span>
+			    	<p>配送至：<select name="" id="">
+							<option value="">广州市番禺区</option>			
+							<option value="">广州市白云区</option>			
+							<option value="">广州市越秀区</option>			
+							<option value="">广州市天河区</option>			
+							<option value="">深圳市龙岗区</option>			
+						</select>
+						<i></i>
+					</p>
+				</div>
+				<div class="shop_thead">
+					<ul>
+						<li><a href="javaScript:void(0)" class="all_tick"><label><input type="checkbox" id="checkbox"/><span class="all_tick">全选</span></label></a></li>
+						<li>商品信息</li>
+						<li>单价</li>
+						<li>数量</li>
+						<li>金额</li>
+						<li>操作</li>
+					</ul>
+				</div>
+						{volist name="list" id="cv"}
+					<ul class="shop_tbody" style="position: relative; margin-left: 30px; margin-bottom: 100px;">						<li><input type="checkbox" name="id[]" class="ck" value="{$cv.id}" style="position: absolute; margin-top: 20px;"  /></li>						<li style="position: absolute; margin-left: 120px;"><a href="{:url('Product/pro_details',['id='.$cv.id])}"><img class='pro_img' src="{$cv.thumb}" alt='' style="width: 153px; height: 156px;" /></a></li>						<li style="margin-left: 300px;"><h4 class='proname'><a href="{:url('Product/pro_details',['id='.$cv.id])}"></a></h4><p>{$cv.name}</p></li>						<li style="margin-left: 675px; height: 100px; line-height: 100px;">￥<span class='price'>{$cv.price}</span></li>						<li style="margin-left: 820px; margin-top: -58px;" class='buy_num'><button class='jians'>-</button><input type='text' class="txt_num" value="{$cv.num}" style="width: 30px; text-align: center;" /><button class='jias' >+</button></li>						<li style="margin-left: 940px; margin-top: -25px;">￥<span class='subtotal' val="{$cv.price}">{$cv.total}</span></li>						<li style="float: right; margin-top: -30px;"><input type="button" class="del" value="删除" /><a href="###">移到我的关注</a></li>
+					</ul>				{/volist}		
+				<div class="shop_tfoot">
+					<ul>
+						<li><a href="javaScript:void(0)" class="all_tick"><label><input type="checkbox" id="checkbox2"/><span>全选</span></label></a></li>
+						<li><a href="javascript:void(0)" id="del_sel" class="alldel">删除</a></li>
+						<li><a href="#">分享</a></li>
+						<li>已选<em id="count" class="x_num">0</em>商品</li>
+						<li>总价：<span id="total" class="span_total">￥0.00</span></li>
+						<li><input type="submit" class="btn" value="去结算"/></li>
+					</ul>
+				<div class="page clear">
+					<ul>
+						
+					</ul>
+				</div>
+			</article>
+	<script type="text/javascript" src="__PUBLIC__js/jquery-1.11.0.js" ></script><script>	$(function(){		$("ul.shop_tbody .jias").each(function(a){				$(this).click(function(){					var i=parseInt($(".txt_num").eq(a).val());					i=i+1;					$(".txt_num").eq(a).val(i);					//小计					var price = $(this).parent().next().find('span').attr('val')												$(this).parent().next().find('span').text('￥'+price*i)					total()				})			})			//数量减		$(".jians").each(function(a){			$(this).click(function(){				var i=parseInt($(".txt_num").eq(a).val());				if(i>1){					i=i-1;					$(".txt_num").eq(a).val(i);				}				//小计				var price = $(this).parent().next().find('span').attr('val')				alert(price)				$(this).parent().next().find('span').text('￥'+price*i)				total()			})		})		//单个删除		$('.del').each(function(){			$(this).click(function(){				var id=$(this).parent().parent().find('.ck').val()//				alert(id)				var obj=$(this)				$.post("{:url('onedel')}",{id:id},function(data){					if(data.info){						obj.parent().parent().remove()					}				})							})		})		//批量删除		$('.alldel').click(function(){			var allid=[]			$('.ck:checked').each(function(){				allid.push($(this).val())							})			if(allid==''){				alert('至少选择一个商品')			}else{				$.post("{:url('alldel')}",{id:allid},function(data){					if(data.info){						$('.ck:checked').each(function(){							$(this).parent().parent().remove()										})					}				})			}		})				$('.ck').click(function(){			total()		})				//检测数据，更改购物车选中数据		$('.btn').click(function(){			var data=[]			$('.ck:checked').each(function(){				var select=[]				select.push($(this).val())				select.push($(this).parent().parent().find('.txt_num').val())				data.push(select)			})			if(data==''){				alert('至少选一个商品')			}else{				$.post("{:url('check')}",{data:data},function(data){					if(data.info){						location="{:url('confirm')}"					}				})			}		})			})					function total(){			var num=0			var total=0			$('.ck').each(function(){				var bool=$(this).is(":checked")				if(bool){					//数量					var cnum=parseInt($(this).parent().parent().find('.txt_num').val())					num=num+cnum										//价格					var cprice=$(this).parent().parent().find('.subtotal').text()//					alert(cprice)					cprice=parseFloat(cprice)					total=total+cprice				}						})//			alert(total)			$('.x_num').text(num)			$('.span_total').text(total)		}</script>{include file="public/footer"}	

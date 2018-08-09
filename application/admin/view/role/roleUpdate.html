@@ -1,0 +1,72 @@
+<body>
+<article class="cl pd-20">
+	<form action="" method="post" class="form form-horizontal" id="form-admin-add">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$one.name}" placeholder="" id="adminName" name="name" style="width: 300px;">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">权限：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{volist name="list" id="v"}
+				<div style="margin-bottom: 15px;" class="che">				
+					{if condition="$v['fid']==0"}
+					<p><input type="checkbox" value="{$v.id}"  level='1' name="lever[]" {if condition="in_array($v['id'],$one['lever'])"}checked="checked"{/if} />{$v.name}</p>
+					{/if}
+					{volist name="list" id="vv"}
+					{if condition="$vv['fid']==$v['id']"}
+					<span><input type="checkbox" value="{$vv.id}" level='2' name="lever[]" {if condition="in_array($vv['id'],$one['lever'])"}checked="checked"{/if} />{$vv.name}</span>
+					{/if}
+					{/volist}				
+				</div>
+				{/volist}
+				<input style="margin-top: 10px;" type="button" value="全选" class="all" />
+				<input style="margin-top: 10px;" type="button" value="取消全选" class="noall" />
+			</div>
+			
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</article>
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="__PUBLIC__lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__PUBLIC__lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+
+<script>
+	$(function(){
+		//全选
+		$('.all').click(function(){
+			$('.che').find('input').prop('checked',true)
+		})
+		//取消全选
+		$('.noall').click(function(){
+			$('.che').find('input').prop('checked',false)
+		})
+		//选父级，子级要选上
+		$('.che p').click(function(){
+			var bool=$(this).find('input').is(':checked')
+			$(this).parent().find('span input').prop('checked',bool)
+		})
+		//选子级，父级应选上
+		$('.che span input').click(function(){
+			var bool=$(this).is(':checked')
+			var p_bool=$(this).parent().parent().find('p input').is(':checked')
+			if(!p_bool){
+				$(this).parent().parent().find('p input').prop('checked',true)
+			}
+		})
+	})
+</script>
+
+

@@ -1,0 +1,32 @@
+{include file="public/header"}<link rel="stylesheet" href="__PUBLIC__css/shop_list.css" />
+			<article class="center">
+				<div class="content_left">
+					<div class="shop_top">
+						<span><a href="{:url('Index/index')}">首页</a></span>
+						<em>></em>
+						<span>搜索</span>
+					</div>
+					<div class="shop_kid clear">
+						<ul>														{volist name="plist" id="pv"}
+							<li>
+								<a href="{:url('pro_details',['id'=>$pv.id])}"><img class="img_src" src="{$pv.thumb|substr=###,1}" style="width: 217px; height: 168px;"/>
+								</a>
+			   					<p class="pro_name"><a href="{:url('pro_details',['id'=>$pv.id])}">{$pv.name}</a></p>
+			   					<p><em>￥</em><b class="price">{$pv.price}</b></p>
+			   					<input type="submit" value="加入购物"/>  
+			   					<p><span>总销量：500</span><i>评价：100</i></p>
+							</li>
+							{/volist}
+						</ul>
+					</div>
+					<div class="page clear">
+						{$plist->render()}
+						<ol>
+							<li>共30页</li>
+							<li>到第<input type="text" value="1"/>页</li>
+							<li><button>确定</button></li>
+						</ol>
+					</div>
+				</div>
+			</article>
+{include file="public/footer"}

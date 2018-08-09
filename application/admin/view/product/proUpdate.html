@@ -1,0 +1,209 @@
+<body>
+<article class="cl pd-20">
+	<form action="" method="post" class="form form-horizontal" id="form-admin-add">
+		<input type="hidden" name="id" value="{$one.id}" />
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商品名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$one.name}" placeholder="" id="adminName" name="name" style="width: 300px;">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">商品简介：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea value="{$one.introduction}" name="introduction" cols="" rows="" class="textarea" dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
+				<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select name="cid" class="select" style="width: 250px;">
+					<option value="0">--请选择分类--</option>
+					{volist name="cateList" id="cv"}
+					<option value="{$cv.id}" {if condition="$one['cid']==$cv['id']"}selected="selected"{/if}>{$cv.name}</option>
+					{/volist}
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>品牌：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select name="bid" class="select" style="width: 250px;">
+					<option value="0">--请选择分类--</option>
+					{volist name="brandList" id="bv"}
+					<option value="{$bv.id}" {if condition="$one['bid']==$bv['id']"}selected="selected"{/if}>{$bv.name}</option>
+					{/volist}
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>货号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$one.number}" placeholder="" id="adminName" name="number" style="width: 300px;">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>市场价：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$one.market}" placeholder="" id="adminName" name="market" style="width: 300px;">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>销售价：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$one.price}" placeholder="" id="adminName" name="price" style="width: 300px;">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>库存：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$one.num}" placeholder="" id="adminName" name="num" style="width: 300px;">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>详情：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="content" style="width:700px;height:200px;visibility:hidden;"></textarea>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>图片主图：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="file" multiple value="" placeholder="" id="pic" name="picture[]">
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" id="btn" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</article>
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="__PUBLIC__lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__PUBLIC__lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+<!--<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-admin-add").validate({
+		rules:{
+			adminName:{
+				required:true,
+				minlength:4,
+				maxlength:16
+			},
+			password:{
+				required:true,
+			},
+			password2:{
+				required:true,
+				equalTo: "#password"
+			},
+			sex:{
+				required:true,
+			},
+			phone:{
+				required:true,
+				isPhone:true,
+			},
+			email:{
+				required:true,
+				email:true,
+			},
+			adminRole:{
+				required:true,
+			},
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$(form).ajaxSubmit();
+			var index = parent.layer.getFrameIndex(window.name);
+			parent.$('.btn-refresh').click();
+			parent.layer.close(index);
+		}
+	});
+});
+</script>-->
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+
+<script>
+	$(function(){
+		var ufile=document.getElementById('pic')
+		var btn=document.getElementById('btn')
+		btn.onclick=function(){
+			var fd= new FormData()
+			for(var i=0;i<ufile.files.length;i++){
+				fd.append('ufile[]',ufile.files[i])
+			}
+			
+			var id=$('input[name="id"]').val()
+			fd.append('id',id)
+			
+			var content=$('textarea[name="content"]').val()
+			fd.append('content',content)
+			
+			var introduction=$('textarea[name="introduction"]').val()
+			fd.append('introduction',introduction)
+			
+			var name=$('input[name="name"]').val()
+			fd.append('name',name)
+			
+			var cid=$('select[name="cid"]').val()
+			fd.append('cid',cid)
+			
+			var bid=$('select[name="bid"]').val()
+			fd.append('bid',bid)
+			
+			var market=$('input[name="market"]').val()
+			fd.append('market',market)
+			
+			var price=$('input[name="price"]').val()
+			fd.append('price',price)
+			
+			var num=$('input[name="num"]').val()
+			fd.append('num',num)
+			
+			var number=$('input[name="number"]').val()
+			fd.append('number',number)	
+			
+			if(name=''){
+				alert('商品名称不能为空')
+				return false
+			}
+			if(price=''){
+				alert('价格不能为空')
+				return false
+			}
+			
+			$.ajax({
+				type:'post',
+				url:"{:url('proUpdate')}",
+				cache:false,
+				data:fd,
+				contentType:false,
+				processData:false,				
+				success:function(data){
+					if(data.info){
+						alert(data.msg)
+						location="{:url('proList')}"
+					}else{
+						alert(data.msg)
+					}
+				}
+			})
+			return false
+		}
+	})
+</script>

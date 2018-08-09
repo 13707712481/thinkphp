@@ -1,0 +1,329 @@
+{include file="public/header"}<link rel="stylesheet" href="__PUBLIC__css/pro_details.css" /><script type="text/javascript" src="__PUBLIC__js/pro_details.js"></script><script type="text/javascript" src="__PUBLIC__js/banner.js" ></script><script type="text/javascript" src="__PUBLIC__js/comments_banner.js"></script><script src="__PUBLIC__js/localStorge.js" type="text/javascript" charset="utf-8"></script><script type="text/javascript" src="__PUBLIC__js/magnifier.js"></script>
+		<article class="center clear">
+			<div class="content_left">
+				<div class="title">
+					<ul>
+						<li><a href="{:url('Index/index')}">首页</a></li>
+						<li><span>&gt;</span></li>
+						<li><a href="#">电子狗</a></li>
+						<li><span>&gt;</span></li>
+						<li>电子狗ZT326CC</li>
+					</ul>
+				</div>
+				<div class="big_mirror clear">
+					<div class="mirror_left">
+						<ul>
+							<li id="preview">
+								<img src="{$product.picture[0]|substr=###,1}">
+								<div id="box1"></div>
+							</li>
+							<li><div id="big_view"></div></li>
+							<li id="banner">
+								<a href="javascript:;" id="prev">&lt;</a>
+								<a href="javascript:;" id="next">&gt;</a>								
+								<div id="box">						
+									<ul>										{volist name="product.picture" id="pic" key="k"}										
+										<li {if condition="$k==1"}class="pro_img on"{/if}><img src="{$pic|substr=###,1}"></li>										{/volist}
+									</ul>																			
+								</div>								
+							</li>
+						</ul>
+					</div>		
+					
+					<div class="mirror_right">						<input type="hidden" id="pid" value="{$product.id}" />						
+						<h4 id="pro_name">{$product.name}</h4>
+						<h4>{$product.introduction}</h4>
+						<p>支持货到付款，支持7天无理由退货，15天换货，售后无忧，请放心购买！</p>
+						<ul>
+							<li>价格：<s><em>￥</em>{$product.market}</s></li>
+							<li>促销价：<em>￥</em><span id="pro_price">{$product.price}</span></li>
+							<li>商品评价：<span>好评度99% </span><span>2378人评价</span></li>
+							<li>月销量：<span>3000件</span></li>
+							<li>配送至：<select name="" id=""><option value="">广州市天河区黄村街道99号</option></select></li>
+							<li>数量：<div class="buy_num"><button class="decline">-</button><input class="number" type="text" value="1" onblur="changenum(this)"><button class="increase">+</button><span>剩余存货 100 件</span></div></li>
+						</ul>
+						<p><input type="submit" value="立即购买" onclick="addPay()" /><input type="submit" onclick="addPro()" value="加入购物车" id="add_cart"></p>
+						
+					</div>
+				</div>
+				<div class="content_middle clear">
+					<div class="middle_left">
+						<h4>搜索</h4>
+						<form>
+							<p class="p1"><label>关键字 : <input type="text"/></label></p>
+							<p class="p2"><label>价格 : <input type="text"  placeholder="￥500"/><em>—</em><input type="text"  placeholder="￥1000"/></label></p>
+							<p class="p3"><input type="submit" value="确定"></p>
+						</form>
+						<h4>相似商品</h4>
+						<ul>
+							<li><a href="#"><img src="__PUBLIC__images/pro_left_1.jpg" alt=""></a><p><a href="#">善领GT339SC汽车电子狗自动升级云狗</a></p><span><em>￥</em>999</span>
+							</a>
+							</li>
+							<li><a href="#"><img src="__PUBLIC__images/pro_left_2.jpg" alt=""></a><p><a href="#">善领GT339SC汽车电子狗自动升级云狗</a></p><span><em>￥</em>999</span></li>
+							<li><a href="#"><img src="__PUBLIC__images/pro_left_3.jpg" alt=""></a><p><a href="#">善领GT339SC汽车电子狗自动升级云狗</a></p><span><em>￥</em>999</span></li>
+							<li><a href="#"><img src="__PUBLIC__images/pro_left_4.jpg" alt=""></a><p><a href="#">善领GT339SC汽车电子狗自动升级云狗</a></p><span><em>￥</em>999</span></li>
+							<li><a href="#"><img src="__PUBLIC__images/pro_left_5.jpg" alt=""></a><p><a href="#">善领GT339SC汽车电子狗自动升级云狗</a></p><span><em>￥</em>999</span></a></li>
+							<li><a href="#"><img src="__PUBLIC__images/pro_left_6.jpg" alt=""></a><p><a href="#">善领GT339SC汽车电子狗自动升级云狗</a></p><span><em>￥</em>999</span></li>
+						</ul>					
+					</div>
+					<div class="middle_right">
+						<div class="middle_top">
+							<ul>
+								<li><a href="javascript:void(0)" class="on" onclick="Toggle(event)">商品详情</a></li>
+								<li><a href="javascript:void(0)">售后保障</a></li>
+								<li><a href="javascript:void(0);" onclick="Toggle(event)">商品评价</a></li>
+							</ul>
+						</div>
+						<div class="details" style="display: block;">
+							<div class="middle_content">
+								<h5>产品参数</h5>
+								<ul>
+									<li>
+										<div class="cent">
+											<ul>
+												<li>产品类型：<span>云电子狗电子狗ZT326CC</span></li>
+												<li>安全预警仪固定流动 天气预报 实时路况二代云电子狗</li>
+												<li>屏幕尺寸：<span>1.3英寸</span></li>
+												<li>屏幕类型： <span>单色OLED显示屏</span></li>
+												<li>屏幕分辨率：<span>128*64</span></li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<div class="cent">
+											<ul>
+												<li>机身特点：<span>香槟金</span></li>
+												<li>扬声器：<span>8Ω-1.5W</span></li>
+												<li>数据接口： <span>Mini USB 2.0</span></li>
+												<li>接收频率：<span>1575.42±1.023MHZ，感度值95±2dB</span></li>
+												<li>三脚架K-BAND 可探测，34.300GHz±1300MHZ</li>	
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="middle_bottom">
+								<div class="title">
+									<span>1</span>
+									<h1>全频雷达测速</h1>
+									<p>固定测速预警，300万全国数据让你所向无敌</p>
+								</div>
+								<img src="__PUBLIC__images/pro_middle_1.jpg"/>
+								<div class="title">
+									<span>2</span>
+									<h1>固定测速预警</h1>
+									<p>固定测速预警，300万全国数据让你所向无敌</p>
+								</div>
+								<img src="__PUBLIC__images/pro_middle_2.jpg"/>
+								<div class="title">
+									<span>3</span>
+									<h1>双GPRS定位系统</h1>
+									<p>定位系统动力智能技术，一键启动式高速定位系统</p>
+								</div>
+								<img src="__PUBLIC__images/pro_middle_3.jpg"/>
+								<div class="title">
+									<span>04</span>
+									<h1>实时路况、天气信息查询</h1>
+									<p>固定测速预警，300万全国数据让你所向无敌</p>
+								</div>
+								<img src="__PUBLIC__images/pro_middle_4.jpg"/>
+								<div class="title">
+									<span>05</span>
+									<h2>产品图片展示</h2>
+								</div>
+								<img src="__PUBLIC__images/pro_middle_5.jpg"/>
+								<div class="title">
+									<span>06</span>
+									<h2>产品参数</h2>
+								</div>
+								<img src="__PUBLIC__images/pro_middle_6.jpg"/>
+							</div>
+						</div>
+						<div class="comment" style="display: none;">
+							<div class="comment_top">
+								<h4>累计评价<em>1324</em></h4>
+							</div>
+							<div class="comment_list">
+								<div class="list_left">
+									<span>好评度</span>
+									<i>99<em>%</em></i>
+								</div>
+								<ul>
+									<li><a href="#">质量好(100)</a></li>
+									<li><a href="#">服务不错(100)</a></li>
+									<li><a href="#">功能正面(105)</a></li>
+									<li><a href="#">物流快(207)</a></li>
+									<li><a href="#">实惠(207)</a></li>
+									<li><a href="#">外形正面(207)</a></li>
+									<li><a href="#">功能负面(12)</a></li>
+								</ul>
+							</div>
+							<div class="comment_kid">
+								<label>
+									<input type="radio" name="kid" checked="checked"  value=""/>
+									<span>全部</span>
+								</label>
+								<label>
+									<input type="radio" name="kid"/>
+									<span>追评(100)</span>
+								</label>
+								<label>
+									<input type="radio" name="kid"/><span>好评(300)</span>
+								</label>
+								<label>
+									<input type="radio" name="kid"/><span>中评(150)</span>
+								</label>
+								<label>
+									<input type="radio" name="kid"/>
+									<span>差评(15)</span>
+								</label>
+								<select name="" id="">
+									<option value=""> 
+										按默认
+
+									</option>
+								</select>
+							</div>
+							<ul>
+								<li class="comment_middle">
+									<div class="comment_left">
+										<span>t***9<em>( 匿名 )</em></span>
+										<i>2017-03-03</i>
+									</div>
+									<div class="comment_right">
+										<p>用了好多天 感觉挺好的 小车很漂亮 不需安装 插上就能用很方便预报也及时 没罚单了解释挺详细的 很有耐心</p>
+										<span>颜色分类：黄色</span>
+										<ul>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+										</ul>
+									</div>	
+								</li>
+								<li class="comment_middle">
+									<div class="comment_left">
+										<span>t***9<em>( 匿名 )</em></span>
+										<i>2017-03-03</i>
+									</div>
+									<div class="comment_right">
+										<p>用了好多天 感觉挺好的 小车很漂亮 不需安装 插上就能用很方便预报也及时 没罚单了解释挺详细的 很有耐心</p>
+										<span>颜色分类：黄色</span>
+										<ul>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+										</ul>
+									</div>	
+								</li>
+								<li class="comment_middle">
+									<div class="comment_left">
+										<span>t***9<em>( 匿名 )</em></span>
+										<i>2017-03-03</i>
+									</div>
+									<div class="comment_right">
+										<p>用了好多天 感觉挺好的 小车很漂亮 不需安装 插上就能用很方便预报也及时 没罚单了解释挺详细的 很有耐心</p>
+										<span>颜色分类：黄色</span>
+										<ul>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+	
+										</ul>
+									</div>	
+								</li>
+								<li class="comment_middle">
+									<div class="comment_left">
+										<span>t***9<em>( 匿名 )</em></span>
+										<i>2017-03-03</i>
+									</div>
+									<div class="comment_right">
+										<p>用了好多天 感觉挺好的 小车很漂亮 不需安装 插上就能用很方便预报也及时 没罚单了解释挺详细的 很有耐心</p>
+										<span>颜色分类：黄色</span>
+										<ul>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+										</ul>
+									</div>	
+								</li>
+								<li class="comment_middle">
+									<div class="comment_left">
+										<span>t***9<em>( 匿名 )</em></span>
+										<i>2017-03-03</i>
+									</div>
+									<div class="comment_right">
+										<p>用了好多天 感觉挺好的 小车很漂亮 不需安装 插上就能用很方便预报也及时 没罚单了解释挺详细的 很有耐心</p>
+										<span>颜色分类：黄色</span>
+										<ul>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+										</ul>
+									</div>	
+								</li>
+								<li class="comment_middle">
+									<div class="comment_left">
+										<span>t***9<em>( 匿名 )</em></span>
+										<i>2017-03-03</i>
+									</div>
+									<div class="comment_right">
+										<p>用了好多天 感觉挺好的 小车很漂亮 不需安装 插上就能用很方便预报也及时 没罚单了解释挺详细的 很有耐心</p>
+										<span>颜色分类：黄色</span>
+										<ul>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+										</ul>
+									</div>	
+								</li>
+								<li class="comment_middle">
+									<div class="comment_left">
+										<span>t***9<em>( 匿名 )</em></span>
+										<i>2017-03-03</i>
+									</div>
+									<div class="comment_right">
+										<p>用了好多天 感觉挺好的 小车很漂亮 不需安装 插上就能用很方便预报也及时 没罚单了解释挺详细的 很有耐心</p>
+										<span>颜色分类：黄色</span>
+										<ul>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+											<li><img src="__PUBLIC__images/comments_1.jpg" alt=""></li>
+										</ul>
+									</div>	
+								</li>
+							</ul>
+							<div class="page clear">
+								<ul>
+									<li><a href="#">上一页</a></li>
+									<li><a href="#"  class="on">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#">...</a></li>
+									<li><a href="#">下一页</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="content_right">
+				<div class="right_header">
+					<ul>
+						<li><span></span></li>
+						<li><h4>相关产品</h4></li>
+						<li><span></span></li>
+					</ul>
+				</div>
+				<div class="right_body clear">
+					<div class="box">		
+						<ul >
+							<li><a href="#"><img src="__PUBLIC__images/pro_right_1.jpg" alt=""></a><span><em>￥</em>899</span></li>
+							<li><a href="#"><img src="__PUBLIC__images/pro_right_2.jpg" alt=""></a><span><em>￥</em>899</span></li>
+							<li><a href="#"><img src="__PUBLIC__images/pro_right_3.jpg" alt=""></a><span><em>￥</em>899</span></li>
+							<li><a href="#"><img src="__PUBLIC__images/pro_right_4.jpg" alt=""></a><span><em>￥</em>899</span></li>
+						</ul>
+					</div>
+					<a href="javascript:;" class="prev">&lt;</a>
+					<a href="javascript:;" class="next">&gt;</a>
+				</div>	
+			</div>
+		</article>		{include file="public/footer"}<script>	$(function(){		$('#add_cart').click(function(){			var pid=$('#pid').val()			var num=$('.number').val()			$.post("{:url('Cart/addCart')}",{pid:pid,num:num},function(data){				if(data.code==400){					alert(data.msg)					location="{:url('Member/login')}"				}				alert(data.msg)			})		})	})</script>
